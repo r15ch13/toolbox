@@ -1,0 +1,6 @@
+[submodule "public/packages/codemirror"]
+	path = public/packages/codemirror
+	url = https://github.com/marijnh/CodeMirror.git
+[submodule "public/packages/modernui"]
+	path = public/packages/modernui
+	url = https://github.com/olton/Metro-UI-CSS.git
