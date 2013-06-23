@@ -1,0 +1,90 @@
+body {
+    background-color: #fff;
+}
+.metrouicss .page {
+    width: 940px ;
+    margin: auto;
+    background-color: #fff;
+}
+
+.browsers-icons img {
+    float: left;
+    margin-right: 20px;
+}
+
+.metrouicss .charms,
+.metrouicss .app-bar,
+.metrouicss .message-dialog,
+.metrouicss .error-bar,
+.metrouicss .warning-bar,
+.metrouicss .info-bar {
+    position: absolute;
+}
+
+.row textarea {
+    width: 100%;
+}
+
+.hostname {
+    font-weight: bold;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    margin-right: 10px;
+    text-shadow: 1px 1px 1px #888;
+}
+
+.hide {
+    display: none;
+}
+
+.metrouicss pre,
+.metrouicss code,
+.metrouicss kbd,
+.metrouicss samp {
+  font-family: monospace, serif;
+  _font-family: 'courier new', monospace;
+  font-size: 1em;
+}
+
+.message-dialog {
+    z-index: 100;
+}
+
+.fork-me img {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    border: 0;
+    z-index: 1031;
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+    .metrouicss .page {
+        width: 724px;
+    }
+    .metrouicss .hero-unit > img {
+        zoom: .6;
+    }
+}
+
+@media (max-width: 767px) {
+    .metrouicss .page {
+        width: 100%;
+    }
+
+    .metrouicss a, .metrouicss .link {
+        font-size: 9pt;
+    }
+
+    .metrouicss h3 {
+        line-height: 11px;
+    }
+
+    .metrouicss .no-mobile {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+
+}
