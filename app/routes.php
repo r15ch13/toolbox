@@ -16,30 +16,6 @@ require_once "helper.php";
  */
 Route::get('/', array('as' => 'home', 'uses' => 'HomeController@home'));
 
-Route::get('test', function() {
-
-
-    // print_r(Referrer::increaseClick());
-
-    // print_r(URL::previous());
-    // if($surl = ShortUrl::findShort('r15')) {
-    //     print_r($surl->secureClick());
-    // }
-
-
-    // $bla = new ShortUrl(array(
-    //     'short' => 'r15',
-    //     'url' => 'http://r15ch13.de',
-    // ));
-    // $bla->save();
-
-//     $comment = new Comment(array('message' => 'A new comment.'));
-
-// $post = Post::find(1);
-
-// $comment = $post->comments()->save($comment);
-});
-
 /**
  * Decode/Encode all the strings ヽ(ﾟ◇ﾟ )ﾉ
  */
