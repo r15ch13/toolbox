@@ -12,7 +12,7 @@ Clone repository, install submodules.
 > git submodule init
 > git submodule update
 ```
-Install depencencies using [Composer](http://getcomposer.org/).
+Install dependencies using [Composer](http://getcomposer.org/).
 ```
 > php composer.phar install
 ```
