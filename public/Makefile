@@ -11,7 +11,7 @@ build.stylesheet:
 	cat \
 		packages/modernui/css/modern.css \
 		packages/modernui/css/modern-responsive.css \
-		packages/codemirror-3.14/lib/codemirror.css \
+		packages/codemirror/lib/codemirror.css \
 		$(CSS_SOURCE)/main.css \
 	> $(CSS_SOURCE)/all.css
 	cp -r packages/modernui/fonts ./fonts
@@ -24,13 +24,13 @@ minimize.javascript: build.javascript
 
 build.javascript:
 	cd $(JS_SOURCE) && uglifyjs ../packages/jquery-1.10.1.js \
-		../packages/codemirror-3.14/lib/codemirror.js \
-		../packages/codemirror-3.14/mode/xml/xml.js \
-		../packages/codemirror-3.14/mode/javascript/javascript.js \
-		../packages/codemirror-3.14/addon/fold/foldcode.js \
-		../packages/codemirror-3.14/addon/fold/brace-fold.js \
-		../packages/codemirror-3.14/addon/fold/indent-fold.js \
-		../packages/codemirror-3.14/addon/fold/xml-fold.js \
+		../packages/codemirror/lib/codemirror.js \
+		../packages/codemirror/mode/xml/xml.js \
+		../packages/codemirror/mode/javascript/javascript.js \
+		../packages/codemirror/addon/fold/foldcode.js \
+		../packages/codemirror/addon/fold/brace-fold.js \
+		../packages/codemirror/addon/fold/indent-fold.js \
+		../packages/codemirror/addon/fold/xml-fold.js \
 		../packages/modernui/javascript/dropdown.js \
 		../packages/modernui/javascript/input-control.js \
 		main.js \
