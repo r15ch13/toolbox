@@ -66,7 +66,7 @@
             $.ajax({
                 url: base_url+'/page/shorten',
                 type: 'post',
-                data: { url:$('input.url').val() },
+                data: { long_url:$('input.long-url').val() },
                 dataType: 'json'
             }).success(function(data, status) {
                 if(data.status === 'ok') {
@@ -74,7 +74,7 @@
                     shorten_status.find('.notice-text').html(data.message);
                     shorten_status.removeClass('bg-color-redLight').addClass('bg-color-green');
 
-                    $('input.url').val(data.short_url).focus().select();
+                    $('input.long-url').val(data.short_url).focus().select();
                 } else if(data.status === 'error') {
                     shorten_status.find('.notice-header').html('Validation Error!');
                     shorten_status.find('.notice-text').html(data.message);
@@ -98,7 +98,7 @@
             return false;
         });
 
-        $(document).on('input.url', 'input', function(e)
+        $(document).on('input.long-url', 'input', function(e)
         {
             var btn = $('.btn-shorten');
 
@@ -118,7 +118,7 @@
             }
         });
 
-        $('input.url').click(function(e) {
+        $('input.long-url').click(function(e) {
             if($('.btn-shorten').hasClass('disabled')) {
                 $(this).focus().select();
             }

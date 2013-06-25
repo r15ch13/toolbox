@@ -95,7 +95,7 @@ class HomeController extends BaseController {
 
 	public function shorten()
 	{
-		$url = Input::get('url');
+		$url = Input::get('long_url');
 
 		do
 		{
@@ -108,7 +108,7 @@ class HomeController extends BaseController {
 
 		$validator = Validator::make(
 			Input::all(),
-			array('url' => 'required|url')
+			array('long_url' => 'required|url')
 		);
 
 		if ($validator->fails())

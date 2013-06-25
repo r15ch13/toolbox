@@ -12566,7 +12566,7 @@ CodeMirror.indentRangeFinder = function(cm, start) {
                 url: base_url + "/page/shorten",
                 type: "post",
                 data: {
-                    url: $("input.url").val()
+                    long_url: $("input.long-url").val()
                 },
                 dataType: "json"
             }).success(function(data, status) {
@@ -12574,7 +12574,7 @@ CodeMirror.indentRangeFinder = function(cm, start) {
                     shorten_status.find(".notice-header").html("Success!");
                     shorten_status.find(".notice-text").html(data.message);
                     shorten_status.removeClass("bg-color-redLight").addClass("bg-color-green");
-                    $("input.url").val(data.short_url).focus().select();
+                    $("input.long-url").val(data.short_url).focus().select();
                 } else if (data.status === "error") {
                     shorten_status.find(".notice-header").html("Validation Error!");
                     shorten_status.find(".notice-text").html(data.message);
@@ -12596,7 +12596,7 @@ CodeMirror.indentRangeFinder = function(cm, start) {
             event.preventDefault();
             return false;
         });
-        $(document).on("input.url", "input", function(e) {
+        $(document).on("input.long-url", "input", function(e) {
             var btn = $(".btn-shorten");
             if (event.keyCode == 13) {
                 if (btn.hasClass("disabled")) {
@@ -12608,7 +12608,7 @@ CodeMirror.indentRangeFinder = function(cm, start) {
                 btn.removeClass("disabled");
             }
         });
-        $("input.url").click(function(e) {
+        $("input.long-url").click(function(e) {
             if ($(".btn-shorten").hasClass("disabled")) {
                 $(this).focus().select();
             }

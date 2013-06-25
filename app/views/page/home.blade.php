@@ -15,8 +15,8 @@
 
                         {{ Form::open(array('class' => '')) }}
                             <div class="input-control text span9">
-                                {{ Form::text('url', Input::old('url', ''), array(
-                                        'class' => 'url',
+                                {{ Form::text('long_url', Input::old('long_url', ''), array(
+                                        'class' => 'long-url',
                                         'placeholder' => Lang::get('main.placeholder.shorten'),
                                         'autocomplete' => 'off'
                                     ))
