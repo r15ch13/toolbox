@@ -7,9 +7,6 @@
 		"laravel/framework": "4.0.*",
 		"greggilbert/recaptcha": "dev-master"
 	},
-	"require-dev": {
-		"codeception/codeception": "@stable"
-	},
 	"autoload": {
 		"classmap": [
 			"app/commands",
