@@ -3,8 +3,12 @@
 	"description": "The Laravel Framework.",
 	"keywords": ["framework", "laravel"],
 	"require": {
+		"php": ">=5.3.3",
 		"laravel/framework": "4.0.*",
 		"greggilbert/recaptcha": "dev-master"
+	},
+	"require-dev": {
+		"codeception/codeception": "@stable"
 	},
 	"autoload": {
 		"classmap": [
