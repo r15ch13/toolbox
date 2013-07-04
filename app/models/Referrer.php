@@ -14,6 +14,7 @@ class Referrer extends Eloquent {
     {
         $this->clicks += 1;
         $this->save();
+        $this->touch();
         return $this;
     }
 
@@ -21,6 +22,7 @@ class Referrer extends Eloquent {
     {
         $this->secure_clicks += 1;
         $this->save();
+        $this->touch();
         return $this;
     }
 
