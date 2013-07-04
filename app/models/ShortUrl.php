@@ -68,6 +68,7 @@ class ShortUrl extends Eloquent {
 
         $this->clicks += 1;
         $this->save();
+        $this->touch();
         return $this;
     }
 
@@ -80,6 +81,7 @@ class ShortUrl extends Eloquent {
 
         $this->secure_clicks += 1;
         $this->save();
+        $this->touch();
         return $this;
     }
 
