@@ -1,7 +1,7 @@
 # Toolbox
 
 This little project was inspired by Paul Schou's [TRANSLATOR, BINARY xlate](http://home.paulschou.net/tools/xlate/).
-I used xlate used often, but it lacked some features. So I created this project and added a few features, such as XML and JSON beautifier. Checkout out the [demo](http://manly-malinda.gopagoda.com/).
+I used xlate used often, but it lacked some features. So I created this project and added a few features, such as XML and JSON beautifier. Checkout out the [demo1](http://manly-malinda.gopagoda.com/)/[demo2](https://r15.ch/).
 
 ## Installation
 
