@@ -37,6 +37,10 @@ body {
     display: none;
 }
 
+.textarea > textarea {
+    font-family: monospace, serif;
+}
+
 .metrouicss pre,
 .metrouicss code,
 .metrouicss kbd,
