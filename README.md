@@ -38,3 +38,7 @@ Migrate database:
 ```
 
 Done!
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/r15ch13/toolbox/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
