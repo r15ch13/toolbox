@@ -2,7 +2,9 @@
 
 require_once __DIR__.'/../vendor/autoload.php';
 
-Dotenv::load(__DIR__.'/../');
+if(is_readable(__DIR__.'/../.env') && is_file(__DIR__.'/../.env')) {
+    Dotenv::load(__DIR__.'/../');
+}
 
 /*
 |--------------------------------------------------------------------------
