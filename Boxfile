@@ -20,9 +20,9 @@ global:
     - DB_USERNAME: 'MAP:DATABASE1_USER'
     - DB_PASSWORD: 'MAP:DATABASE1_PASS'
     - GOOGLE_API_APP: 'MAP:APP_NAME'
-    - GOOGLE_API_KEY: ''
-    - RECAPTCHA_PUBLIC_KEY: ''
-    - RECAPTCHA_PRIVATE_KEY: ''
+    - GOOGLE_API_KEY: 'Add API Key'
+    - RECAPTCHA_PUBLIC_KEY: 'Add Public Key'
+    - RECAPTCHA_PRIVATE_KEY: 'Add Private Key'
 
 build:
   type: php
