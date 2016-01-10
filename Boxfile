@@ -23,6 +23,9 @@ global:
     - GOOGLE_API_KEY: 'Add API Key'
     - RECAPTCHA_PUBLIC_KEY: 'Add Public Key'
     - RECAPTCHA_PRIVATE_KEY: 'Add Private Key'
+    - CACHE_DRIVER: 'file'
+    - SESSION_DRIVER: 'file'
+    - QUEUE_DRIVER: 'database'
 
 build:
   type: php
