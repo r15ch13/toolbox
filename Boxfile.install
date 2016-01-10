@@ -1,0 +1,16 @@
+#######  PHP BOXFILE  #######
+
+# The Boxfile is a yaml config file that houses all configuration
+# related to your app’s deployment and infrastructure. It allows
+# you to custom-configure your app's environment specific to your
+# project's needs.
+
+# DOCUMENTATION LINKS
+# The Boxfile : pagodabox.io/docs/boxfile_overview
+# PHP Settings in the Boxfile : pagodabox.io/docs/boxfile_php_settings
+# PHP on Pagoda Box : pagodabox.io/docs/php
+# Build & Deploy Hooks : pagodabox.io/docs/build_deploy_hooks
+
+build:
+    - 'if [ ! -f database/sqlite/production.sqlite ]; then touch database/sqlite/production.sqlite; fi;'
+    - 'php artisan -n key:generate'

@@ -61,10 +61,7 @@ web1:
       - storage/framework/views
       - database/sqlite
   before_deploy:
-    - 'if [ ! -f database/sqlite/production.sqlite ]; then touch database/sqlite/production.sqlite; fi;'
-    - 'php artisan -n key:generate'
     - 'php artisan -n migrate'
-  after_deploy:
     - 'php artisan -n cache:clear'
     - 'rm -f storage/framework/views/*'
 
