@@ -15,15 +15,14 @@ global:
   env:
     - APP_ENV: production
     - APP_DEBUG: false
-    - APP_KEY: 'MAP:APP_KEY'
-    - DB_HOST: 'MAP:DB_HOST'
-    - DB_DATABASE: 'MAP:DB_DATABASE'
-    - DB_USERNAME: 'MAP:DB_USERNAME'
-    - DB_PASSWORD: 'MAP:DB_PASSWORD'
-    - GOOGLE_API_APP: 'MAP:GOOGLE_API_APP'
-    - GOOGLE_API_KEY: 'MAP:GOOGLE_API_KEY'
-    - RECAPTCHA_PUBLIC_KEY: 'MAP:RECAPTCHA_PUBLIC_KEY'
-    - RECAPTCHA_PRIVATE_KEY: 'MAP:RECAPTCHA_PRIVATE_KEY'
+    - DB_HOST: 'MAP:DATABASE1_HOST'
+    - DB_DATABASE: 'MAP:DATABASE1_NAME'
+    - DB_USERNAME: 'MAP:DATABASE1_USER'
+    - DB_PASSWORD: 'MAP:DATABASE1_PASS'
+    - GOOGLE_API_APP: 'MAP:APP_NAME'
+    - GOOGLE_API_KEY: ''
+    - RECAPTCHA_PUBLIC_KEY: ''
+    - RECAPTCHA_PRIVATE_KEY: ''
 
 build:
   type: php
@@ -58,6 +57,7 @@ web1:
       - database/sqlite
   before_deploy:
     - 'if [ ! -f database/sqlite/production.sqlite ]; then touch database/sqlite/production.sqlite; fi;'
+    - 'php artisan -n key:generate'
     - 'php artisan -n migrate'
   after_deploy:
     - 'php artisan -n cache:clear'
