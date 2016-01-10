@@ -12,14 +12,14 @@
 # Build & Deploy Hooks : pagodabox.io/docs/build_deploy_hooks
 
 global:
-  env:
-    - APP_ENV: production
-    - APP_DEBUG: false
-    - APP_KEY: 'MAP:APP_KEY'
-    - DB_HOST: 'MAP:DB_HOST'
-    - DB_DATABASE: 'MAP:DB_DATABASE'
-    - DB_USERNAME: 'MAP:DB_USERNAME'
-    - DB_PASSWORD: 'MAP:DB_PASSWORD'
+  env:
+    - APP_ENV: production
+    - APP_DEBUG: false
+    - APP_KEY: 'MAP:APP_KEY'
+    - DB_HOST: 'MAP:DB_HOST'
+    - DB_DATABASE: 'MAP:DB_DATABASE'
+    - DB_USERNAME: 'MAP:DB_USERNAME'
+    - DB_PASSWORD: 'MAP:DB_PASSWORD'
     - GOOGLE_API_APP: 'MAP:GOOGLE_API_APP'
     - GOOGLE_API_KEY: 'MAP:GOOGLE_API_KEY'
     - RECAPTCHA_PUBLIC_KEY: 'MAP:RECAPTCHA_PUBLIC_KEY'
@@ -36,7 +36,7 @@ build:
     - 'npm install'
     - 'bower install'
   after_exec:
-    - 'composer dump-autoload --optimize'
+    - 'composer dump-autoload --optimize'
 
 web1:
   type: php
