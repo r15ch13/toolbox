@@ -9,28 +9,30 @@ Clone repository, install submodules.
 ```
 > git clone https://github.com/r15ch13/toolbox.git
 > cd toolbox
-> git submodule init
-> git submodule update
 ```
 Install dependencies using [Composer](http://getcomposer.org/).
 ```
 > php composer.phar install
 ```
 
-Now follow the [Laravel installation](http://laravel.com/docs/installation) instructions.
+Install dependencies using [Bower](http://bower.io/).
+```
+> npm install
+> bower install
+```
+
+Now follow the [Lumen configuration](https://lumen.laravel.com/docs/5.2/installation#configuration) instructions.
+
+Copy ```.env.example``` file to ```.env```
 
 Generate application key:
 ```
-> chmod -R 777 app/storage
+> chmod -R 777 storage
 > php artisan key:generate
 ```
-Change application settings:
+Change application and database settings:
 ```
-> nano app/config/app.php
-```
-Change database settings:
-```
-> nano app/config/database.php
+> nano .env
 ```
 Migrate database:
 ```
