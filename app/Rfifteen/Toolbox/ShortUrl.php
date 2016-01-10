@@ -17,6 +17,20 @@ class ShortUrl extends Model
         return $this->hasMany('Referrer');
     }
 
+    public static function createFromUrl($url)
+    {
+        do
+		{
+			$slug = integer_to_short_string(static::raiseLastId());
+		}
+		while(static::find($slug));
+
+        return new static([
+            'short' => $slug,
+            'url' => $url,
+        ]);
+    }
+
     public function currentReferrer()
     {
         $referrer_url = app('request')->headers->get('referer');

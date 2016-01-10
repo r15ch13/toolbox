@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
+use GuzzleHttp\Client;
 use Rfifteen\Toolbox\ShortUrl;
+use Rfifteen\Toolbox\Shortener;
 
 class HomeController extends Controller
 {
@@ -80,7 +82,7 @@ class HomeController extends Controller
 			'url_html' => htmlentities(urlencode($text)),
 			'xml' => xml_beautifier($text),
 			'json' => json_beautifier($text),
-			'checksum' => $checksum_output,
+			'checksum' => trim($checksum_output),
 			'short_url' => '',
         ];
 
@@ -92,70 +94,31 @@ class HomeController extends Controller
 		return view('page.about');
 	}
 
+    public function checkSafeBrowsing($url)
+    {
+        $appver = env('APP_VERSION', '0.0.1');
+        $client = env('GOOGLE_API_APP', 'demo-app');
+        $key = env('GOOGLE_API_KEY', '1234');
+        $pver = env('GOOGLE_API_VERSION', '3.1');
+        $url = 'https://sb-ssl.google.com/safebrowsing/api/lookup?client='.$client.'&key='.$key.'&appver='.$appver.'&pver='.$pver.'&url='.urlencode($url);
+        //return $url;
+
+        $client = new Client();
+
+        $res = $client->request('GET', $url, [
+            'verify' => env('GUZZLE_SSL_VERIFY', true)
+        ]);
+
+        return [
+            'statusCode' => $res->getStatusCode(),
+            'body' => (string)$res->getBody(),
+        ];
+    }
+
 	public function shorten()
 	{
-		$url = Input::get('long_url');
-
-		do
-		{
-			$slug = integer_to_short_string(ShortUrl::raiseLastId());
-		}
-		while(ShortUrl::find($slug));
-
-		$new_url = route('lengthen', ['slug' => $slug]);
-		$new_secure_url = route('lengthen_secure', ['slug' => $slug]);
-
-		$validator = Validator::make(
-			Input::all(),
-			[
-                'long_url' => 'required|url',
-                'g-recaptcha-response' => 'required|recaptcha',
-            ]
-		);
-
-		if ($validator->fails())
-		{
-			return response()->json([
-				'status' => 'error',
-				'message' => $validator->messages()->first('url'),
-            ]);
-		}
-
-		if ( ! $short_url = ShortUrl::where('url', '=', $url)->first())
-		{
-			$short_url = new ShortUrl([
-				'short' => $slug,
-				'url' => $url,
-				'ip' => Request::getClientIp(),
-            ]);
-
-			if($short_url->save())
-			{
-				return response()->json([
-					'status' => 'ok',
-					'short_url' => $new_url,
-					'short_secure_url' => $new_secure_url,
-					'message' => __('main.short_url_message', [
-						'url' => $url,
-						'shortURL' => $new_url,
-						'secureShortURL' => $new_secure_url,
-                    ]),
-				]);
-			}
-		}
-		else
-		{
-			return response()->json([
-				'status' => 'ok',
-				'short_url' => $short_url->getShortUrl(),
-				'short_secure_url' => $short_url->getSecureShortUrl(),
-				'message' => __('main.short_url_message', [
-					'url' => $url,
-					'shortURL' => $short_url->getShortUrl(),
-					'secureShortURL' => $short_url->getSecureShortUrl(),
-                ]),
-            ]);
-		}
+        $shortener = new Shortener();
+        return $shortener->shorten();
 	}
 
 	public function lengthenSecure($short)
