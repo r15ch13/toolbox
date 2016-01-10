@@ -32,7 +32,7 @@ build:
     - node_modules
   exec:
     - 'composer install --no-interaction --prefer-source'
-    - 'npm install'
+    - 'npm install -g'
     - 'bower install'
   after_exec:
     - 'composer dump-autoload --optimize'
