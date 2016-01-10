@@ -1,26 +1,72 @@
+#######  PHP BOXFILE  #######
+
+# The Boxfile is a yaml config file that houses all configuration
+# related to your app’s deployment and infrastructure. It allows
+# you to custom-configure your app's environment specific to your
+# project's needs.
+
+# DOCUMENTATION LINKS
+# The Boxfile : pagodabox.io/docs/boxfile_overview
+# PHP Settings in the Boxfile : pagodabox.io/docs/boxfile_php_settings
+# PHP on Pagoda Box : pagodabox.io/docs/php
+# Build & Deploy Hooks : pagodabox.io/docs/build_deploy_hooks
+
+global:
+  env:
+    - APP_ENV: production
+    - APP_DEBUG: false
+    - APP_KEY: 'MAP:APP_KEY'
+    - DB_HOST: 'MAP:DB_HOST'
+    - DB_DATABASE: 'MAP:DB_DATABASE'
+    - DB_USERNAME: 'MAP:DB_USERNAME'
+    - DB_PASSWORD: 'MAP:DB_PASSWORD'
+    - GOOGLE_API_APP: 'MAP:GOOGLE_API_APP'
+    - GOOGLE_API_KEY: 'MAP:GOOGLE_API_KEY'
+    - RECAPTCHA_PUBLIC_KEY: 'MAP:RECAPTCHA_PUBLIC_KEY'
+    - RECAPTCHA_PRIVATE_KEY: 'MAP:RECAPTCHA_PRIVATE_KEY'
+
+build:
+  type: php
+  stability: production
+  lib_dir:
+    - vendor
+    - node_modules
+  exec:
+    - 'composer install --no-interaction --prefer-source'
+    - 'npm install'
+    - 'bower install'
+  after_exec:
+    - 'composer dump-autoload --optimize'
+
 web1:
-  document_root: public
+  type: php
+  name: lumen
+  httpd_document_root: public
   php_version: 5.5.9
   php_extensions:
     - mbstring
     - mcrypt
     - pdo_mysql
-    - redis
-    - zip
     - xcache
-  shared_writable_dir
-    - storage/app:
-    - storage/logs
-    - storage/framework/cache
-    - storage/framework/sessions
-    - storage/framework/views
-    - database/sqlite
-  after_build:
-    - "if [ ! -f composer.phar ]; then curl -s http://getcomposer.org/installer | php; fi; php composer.phar install --prefer-source"
-  after_deploy:
-    - "rm -f storage/framework/cache/*"
-    - "rm -f storage/framework/views/*"
-    - "rm -f storage/logs/*.log"
+  network_dirs:
+    storage1:
+      - storage/app:
+      - storage/logs
+      - storage/framework/cache
+      - storage/framework/sessions
+      - storage/framework/views
+      - database/sqlite
   before_deploy:
-    - "if [ ! -f database/sqlite/production.sqlite ]; then touch database/sqlite/production.sqlite; fi;"
-    - "php artisan migrate"
+    - 'if [ ! -f database/sqlite/production.sqlite ]; then touch database/sqlite/production.sqlite; fi;'
+    - 'php artisan -n migrate'
+  after_deploy:
+    - 'php artisan -n cache:clear'
+    - 'rm -f storage/framework/views/*'
+
+database1:
+  name: lumen-db
+  type: mysql
+
+storage1:
+  type: nfs
+  name: lumen-writables
