@@ -12,5 +12,5 @@
 # Build & Deploy Hooks : pagodabox.io/docs/build_deploy_hooks
 
 build:
-    - 'if [ ! -f database/sqlite/production.sqlite ]; then touch database/sqlite/production.sqlite; fi;'
+  after_exec:
     - 'php artisan -n key:generate'
