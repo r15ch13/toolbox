@@ -13,7 +13,7 @@
 
 global:
   env:
-    - APP_ENV: production
+    - APP_ENV: local
     - APP_DEBUG: false
     - APP_KEY: 'SomeRandomKey!!!'
     - DB_HOST: 'MAP:DATABASE1_HOST'
