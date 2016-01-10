@@ -5,16 +5,15 @@
 @stop
 
 @section('content')
-    <div class="page secondary">
-        <div class="page-header">
-            <div class="page-header-content">
-                <h1>@lang('main.page.about.title')<small></small></h1>
-                <a href="{{ route('home') }}" class="back-button big page-back"></a>
-            </div>
-        </div>
-        <div class="page-region">
-            <div class="page-region-content">
-                @lang('main.page.about.content')
+    <div class="grid">
+        <div class="row">
+            <div class="panel">
+                <div class="heading bg-mauve fg-grayLighter">
+                    <span class="title">@lang('main.page.about.title')</span>
+                </div>
+                <div class="content padding10">
+                    @lang('main.page.about.content')
+                </div>
             </div>
         </div>
     </div>

@@ -1,22 +1,21 @@
 @extends('layout')
 
 @section('content')
-    <div class="page secondary">
-        <div class="page-header">
-            <div class="page-header-content">
-                <h1>@lang('main.page.secure.title')<small></small></h1>
-                <a href="{{ route('home') }}" class="back-button big page-back"></a>
-            </div>
-        </div>
-        <div class="page-region">
-            <div class="page-region-content">
-                <p>
-                    @lang('main.page.secure.content', ['url' => $url, 'shortURL' => $short_url])
-                </p>
-                <p>
-                    <a href="{{ $url }}" class="button default">@lang('main.page.about.proceed')</a>
-                    <a href="{{ route('home') }}" class="button bg-color-red fg-color-white">@lang('main.page.about.cancel')</a>
-                </p>
+    <div class="grid">
+        <div class="row">
+            <div class="panel">
+                <div class="heading bg-darkCrimson fg-grayLighter">
+                    <span class="title">@lang('main.page.secure.title')</span>
+                </div>
+                <div class="content padding10">
+                    <p>
+                        @lang('main.page.secure.content', ['url' => $url, 'shortURL' => $short_url])
+                    </p>
+                    <p>
+                        <a href="{{ $url }}" class="button bg-green fg-white">@lang('main.page.about.proceed')</a>
+                        <a href="{{ route('home') }}" class="button bg-red fg-white">@lang('main.page.about.cancel')</a>
+                    </p>
+                </div>
             </div>
         </div>
     </div>

@@ -1,0 +1,13 @@
+{
+  "name": "toolbox",
+  "version": "2.0.0",
+  "private": true,
+  "authors": [
+    "Richard Kuhnt <r15ch13@gmail.com>"
+  ],
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {
+    "bower": "^1.7.2"
+  }
+}

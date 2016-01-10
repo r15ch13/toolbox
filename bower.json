@@ -1,0 +1,57 @@
+{
+    "name": "toolbox",
+    "version": "2.0.0",
+    "authors": [
+        "Richard Kuhnt <r15ch13@gmail.com>"
+    ],
+    "license": "MIT",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "jquery": "~2.1.4",
+        "codemirror": "~5.10.0",
+        "metro": "~3.0.13"
+    },
+    "install": {
+        "base": "public",
+        "path": {
+            "js": "{name}/js",
+            "map": "{name}/js",
+            "css": "{name}/css",
+            "eot": "{name}/fonts",
+            "svg": "{name}/fonts",
+            "ttf": "{name}/fonts",
+            "woff": "{name}/fonts"
+        },
+        "sources" : {
+            "codemirror": [
+                "bower_components/codemirror/lib/codemirror.js",
+                "bower_components/codemirror/lib/codemirror.css",
+                "bower_components/codemirror/mode/xml/xml.js",
+                "bower_components/codemirror/mode/javascript/javascript.js",
+                "bower_components/codemirror/addon/fold/foldcode.js",
+                "bower_components/codemirror/addon/fold/brace-fold.js",
+                "bower_components/codemirror/addon/fold/indent-fold.js",
+                "bower_components/codemirror/addon/fold/xml-fold.js"
+            ],
+            "metro": [
+                "bower_components/metro/build/css/metro.css",
+                "bower_components/metro/build/css/*.min.css",
+                "bower_components/metro/build/fonts/metro.eot",
+                "bower_components/metro/build/fonts/metro.svg",
+                "bower_components/metro/build/fonts/metro.ttf",
+                "bower_components/metro/build/fonts/metro.woff",
+                "bower_components/metro/build/js/metro.min.js"
+            ],
+            "jquery": [
+                "bower_components/jquery/dist/jquery.min.js",
+                "bower_components/jquery/dist/jquery.min.map"
+            ]
+        }
+    }
+}

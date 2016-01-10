@@ -1,38 +1,17 @@
 (function(window, document, $, undefined)
 {
-
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
 
-    jQuery.fn.selText = function() {
-        var obj = this[0];
-        var range, selection;
-        if ($.browser.msie) {
-            range = obj.offsetParent.createTextRange();
-            range.moveToElementText(obj);
-            range.select();
-            console.log('msie');
-        } else if ($.browser.mozilla || $.browser.opera) {
-            selection = obj.ownerDocument.defaultView.getSelection();
-            range = obj.ownerDocument.createRange();
-            range.selectNodeContents(obj);
-            selection.removeAllRanges();
-            selection.addRange(range);
-            console.log('mozilla/opera');
-        } else if ($.browser.safari) {
-            selection = obj.ownerDocument.defaultView.getSelection();
-            selection.setBaseAndExtent(obj, 0, obj, 1);
-            console.log('safari');
-        }
-        return this;
-    };
-
     $('input.autoselect')
-        .focus(function () { $(this).select(); } )
-        .mouseup(function (event) {event.preventDefault(); });
+        .focus(function(event) {
+            // it's actually $.fn.select() but Metro UI overwrites it with select2
+            $(this).selectText();
+        } )
+        .mouseup(function (event) { event.preventDefault(); });
 
     $('.url-shorten-message').on('click', '.close', function(event) {
         $('.url-shorten-message').fadeOut(200);
@@ -40,6 +19,7 @@
 
     var toggleSubmitButton = function()
     {
+        // http://codegolf.stackexchange.com/a/479/48956
         if($('input.long-url').val().match(/.+\.\w\w.*/) && $('.g-recaptcha-response').val().trim().length > 0)
         {
             $('.btn-shorten').attr('disabled', false);
@@ -55,16 +35,22 @@
         error = false || error;
 
         var $status = $('.url-shorten-message');
-        $status.find('.notice-header').html(header);
-        $status.find('.notice-text').html(text);
+        var $heading = $status.find('.heading');
+        var $content = $status.find('.content');
+        var $icon = $status.find('.icon');
+
+        $heading.find('.title').html(header);
+        $content.html(text);
 
         if(error)
         {
-            $status.find('.notices > div').removeClass('bg-color-green').addClass('bg-color-redLight');
+            $heading.removeClass('bg-green').addClass('ribbed-red');
+            $icon.removeClass('mif-checkmark').addClass('mif-cross');
         }
         else
         {
-            $status.find('.notices > div').removeClass('bg-color-redLight').addClass('bg-color-green');
+            $heading.removeClass('ribbed-red').addClass('bg-green');
+            $icon.removeClass('mif-cross').addClass('mif-checkmark');
         }
 
         $status.fadeIn(200);
@@ -74,8 +60,8 @@
     {
         var $btn = $('.btn-shorten');
 
-        window.grecaptchaId = grecaptcha.render('g-recaptcha', {
-            'sitekey': $('.g-recaptcha').data('sitekey'),
+        window.grecaptchaId = grecaptcha.render('recaptcha-shorten', {
+            'sitekey': $('#recaptcha-shorten').data('sitekey'),
             'callback': function() {
                 toggleSubmitButton();
             },
@@ -102,12 +88,11 @@
         {
             if(data.status === 'ok')
             {
-                showStatusFunction('Success!', data.message);
-                $('input.long-url').val(data.short_url).focus().select();
+                showStatusFunction(data.title, data.message);
             }
             else if(data.status === 'error')
             {
-                showStatusFunction('Validation Error!', data.message, true);
+                showStatusFunction(data.title, data.message, true);
             }
             else
             {
@@ -134,16 +119,6 @@
         toggleSubmitButton();
     });
 
-    $('input.long-url').click(function(event) {
-        if($('.btn-shorten').attr('disabled')) {
-            $(this).focus().select();
-        }
-    });
-
-    $('.shorten-status').on('i.short-url', 'click', function(e) {
-        $(this).selText();
-    });
-
     $(document).ready(function()
     {
         if(document.getElementById('code-xml')) {
@@ -159,6 +134,16 @@
             var foldFunc_json = CodeMirror.newFoldFunction(CodeMirror.braceRangeFinder);
             var json = CodeMirror.fromTextArea(document.getElementById('code-json'), {
                 mode: {name: 'javascript'},
+                lineNumbers: true
+            });
+            json.on('gutterClick', foldFunc_json);
+        }
+
+        if(document.getElementById('code-txt')) {
+            var foldFunc_json = CodeMirror.newFoldFunction(CodeMirror.braceRangeFinder);
+            var json = CodeMirror.fromTextArea(document.getElementById('code-txt'), {
+                mode: { lineWrapping: false,
+                scrollbarStyle: null},
                 lineNumbers: true
             });
             json.on('gutterClick', foldFunc_json);
