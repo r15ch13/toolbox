@@ -12,7 +12,7 @@
                     <span class="title">@lang('main.textarea.shorten', ['hostname' => Request::header('host', '')])</span>
                 </div>
                 <div class="content  bg-steel padding10">
-                    <form method="post" action="{{ Request::root() }}" accept-charset="utf-8" class="">
+                    <form method="post" action="{{ Request::root() }}" accept-charset="utf-8">
                         <div class="input-control text full-size">
                             <input class="long-url autoselect" placeholder="@lang('main.placeholder.shorten')" autocomplete="off" name="long_url" type="text" value="{{ Input::old('long_url', '') }}">
                         </div>
