@@ -11,15 +11,14 @@
                     <span class="icon mif-link"></span>
                     <span class="title">@lang('main.textarea.shorten', ['hostname' => Request::header('host', '')])</span>
                 </div>
-                <div class="content  bg-steel padding10">
+                <div class="content bg-steel padding10">
                     <form method="post" action="{{ Request::root() }}" accept-charset="utf-8">
-                        <div class="input-control text full-size">
+                        <div class="input-control text full-size" data-role="input">
                             <input class="long-url autoselect" placeholder="@lang('main.placeholder.shorten')" autocomplete="off" name="long_url" type="text" value="{{ Input::old('long_url', '') }}">
+                            <button class="button btn-shorten" disabled="disabled"><span class="icon mif-link"></span> @lang('main.button.shorten')</button>
                         </div>
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
                         <div id="recaptcha-shorten" data-sitekey="{{ env('RECAPTCHA_PUBLIC_KEY', '') }}"></div>
-                        <button class="button btn-shorten" disabled="disabled">@lang('main.button.shorten')</button>
                     </form>
                 </div>
             </div>

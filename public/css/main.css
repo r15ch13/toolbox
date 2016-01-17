@@ -14,25 +14,14 @@ a.app-bar-element.active {
     background-color: #005696;
 }
 
-#recaptcha-shorten
-{
+#recaptcha-shorten {
     width: 304px;
     height: 78px;
-    float: left;
-}
-
-.url-shortener .btn-shorten {
-    float: left;
-    margin-top: 1em;
-    margin-left: 1em;
-}
-
-.url-shortener .content {
-    height: 155px;
+    display: inline-block;
 }
 
 .decoder .panel .content {
-    height: 248px;
+    height: 15.3em;
 }
 
 .decoder textarea,
@@ -48,4 +37,67 @@ a.app-bar-element.active {
 
 .checksums .CodeMirror {
     height: initial;
+}
+
+#forkongithub a {
+    background: #007200;
+    color: #fff;
+    text-decoration: none;
+    font-family: arial, sans-serif;
+    text-align: center;
+    font-weight: bold;
+    padding: 5px 40px;
+    font-size: 0.8rem;
+    line-height: 1.5rem;
+    position: relative;
+    transition: 0.5s;
+}
+
+#forkongithub a:hover {
+    background: #007200;
+    color: #fff;
+}
+
+#forkongithub a::before,
+#forkongithub a::after {
+    content: "";
+    width: 100%;
+    display: block;
+    position: absolute;
+    top: 1px;
+    left: 0;
+    height: 1px;
+    background: #fff;
+}
+
+#forkongithub a::after {
+    bottom: 1px;
+    top: auto;
+}
+
+@media screen and (min-width:1590px) {
+    #forkongithub {
+        position: fixed;
+        display: block;
+        bottom: 0;
+        right: 0;
+        width: 200px;
+        overflow: hidden;
+        height: 200px;
+        z-index: 9999;
+    }
+
+    #forkongithub a {
+        width: 300px;
+        position: absolute;
+        top: 90px;
+        right: -70px;
+        transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+        -moz-transform: rotate(-45deg);
+        -o-transform: rotate(-45deg);
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
+    }
+
 }

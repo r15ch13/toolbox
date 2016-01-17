@@ -20,9 +20,10 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        <a href="https://github.com/r15ch13/toolbox" class="fork-me">
+        <!--<a href="https://github.com/r15ch13/toolbox" class="fork-me">
             <img src="{{ url('img/forkme_right_bottom_green_007200.png') }}" alt="Fork me on GitHub">
-        </a>
+        </a>-->
+        <span id="forkongithub"><a href="https://github.com/r15ch13/toolbox">Fork me on GitHub</a></span>
 
         <div class="app-bar">
             <a class="app-bar-element branding" href="{{ route('home') }}">@lang('main.title')</a>
