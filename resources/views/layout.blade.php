@@ -8,11 +8,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <link rel="stylesheet" href="metro/css/metro.min.css">
-        <link rel="stylesheet" href="metro/css/metro-responsive.min.css">
-        <link rel="stylesheet" href="metro/css/metro-icons.min.css">
-        <link rel="stylesheet" href="codemirror/css/codemirror.css">
-        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="{{ url('metro/css/metro.min.css') }}">
+        <link rel="stylesheet" href="{{ url('metro/css/metro-responsive.min.css') }}">
+        <link rel="stylesheet" href="{{ url('metro/css/metro-icons.min.css') }}">
+        <link rel="stylesheet" href="{{ url('codemirror/css/codemirror.css') }}">
+        <link rel="stylesheet" href="{{ url('css/main.css') }}">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro">
     </head>
     <body class="container">
@@ -39,19 +39,19 @@
             </div>
         </div>
 
-        <script src="jquery/js/jquery.min.js"></script>
+        <script src="{{ url('jquery/js/jquery.min.js') }}"></script>
         <script>
             $.fn.selectText = $.fn.select;
         </script>
-        <script src="codemirror/js/codemirror.js"></script>
-        <script src="codemirror/js/xml.js"></script>
-        <script src="codemirror/js/javascript.js"></script>
-        <script src="codemirror/js/foldcode.js"></script>
-        <script src="codemirror/js/brace-fold.js"></script>
-        <script src="codemirror/js/indent-fold.js"></script>
-        <script src="codemirror/js/xml-fold.js"></script>
-        <script src="metro/js/metro.js"></script>
-        <script src="js/main.js"></script>
+        <script src="{{ url('codemirror/js/codemirror.js') }}"></script>
+        <script src="{{ url('codemirror/js/xml.js') }}"></script>
+        <script src="{{ url('codemirror/js/javascript.js') }}"></script>
+        <script src="{{ url('codemirror/js/foldcode.js') }}"></script>
+        <script src="{{ url('codemirror/js/brace-fold.js') }}"></script>
+        <script src="{{ url('codemirror/js/indent-fold.js') }}"></script>
+        <script src="{{ url('codemirror/js/xml-fold.js') }}"></script>
+        <script src="{{ url('metro/js/metro.js') }}"></script>
+        <script src="{{ url('js/main.js') }}"></script>
         <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
     </body>
 </html>
