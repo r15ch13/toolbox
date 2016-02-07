@@ -54,7 +54,7 @@
                 <div class="content padding10">
                     <form method="post" action="{{ route('translate') }}" accept-charset="UTF-8" class="">
                         <div class="input-control textarea">
-                            <textarea name="text" id="text" cols="30" rows="10" placeholder="@lang('main.placeholder.text')">{{ $text }}</textarea>
+                            <textarea name="text" id="text" cols="30" rows="10" placeholder="@lang('main.placeholder.text')">{!! $text !!}</textarea>
                         </div>
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <button type="submit" class="button small-button place-right">@lang('main.button.encode')</button>
@@ -168,7 +168,7 @@
                 <div class="content padding10">
                     <form method="post" action="{{ route('translate') }}" accept-charset="UTF-8" class="">
                         <div class="input-control textarea">
-                            <textarea name="html" id="html" cols="30" rows="10" placeholder="@lang('main.placeholder.html')">{{ $html }}</textarea>
+                            <textarea name="html" id="html" cols="30" rows="10" placeholder="@lang('main.placeholder.html')">{!! $html !!}</textarea>
                         </div>
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <button type="submit" class="button small-button place-right">@lang('main.button.decode')</button>

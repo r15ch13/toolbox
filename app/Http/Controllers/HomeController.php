@@ -50,7 +50,7 @@ class HomeController extends Controller
 			$text = hex_decode(Input::get('hex'));
 
 		if(Input::has('base64'))
-			$text = base64_decode(Input::get('base64'));
+			$text = base64_decode(chunk_split(Input::get('base64')));
 
 		if(Input::has('char'))
 			$text = char_decode(Input::get('char'));
@@ -83,7 +83,7 @@ class HomeController extends Controller
 			'base64' => base64_encode($text),
 			'char' => char_encode($text),
 			'url' => urlencode($text),
-			'html' => htmlentities($text),
+			'html' => str_replace('&', '&amp;', htmlentities($text)),
 			'url_html' => htmlentities(urlencode($text)),
 			'xml' => xml_beautifier($text),
 			'json' => json_beautifier($text),
