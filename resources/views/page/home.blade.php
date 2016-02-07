@@ -200,7 +200,7 @@
         <div class="cell decoder">
             <div class="panel">
                 <div class="heading bg-violet fg-grayLighter">
-                    <span class="icon mif-unlink fg-grayLighter"></span>
+                    <span class="icon mif-more-horiz fg-grayLighter"></span>
                     <span class="title">@lang('main.textarea.morse')</span>
                 </div>
                 <div class="content padding10">
