@@ -57,7 +57,7 @@
                             <textarea name="text" id="text" cols="30" rows="10" placeholder="@lang('main.placeholder.text')">{!! $text !!}</textarea>
                         </div>
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <button type="submit" class="button small-button place-right">@lang('main.button.encode')</button>
+                        <div class="button-control"><button type="submit" class="button small-button place-right">@lang('main.button.encode')</button></div>
                     </form>
                 </div>
             </div>
@@ -75,7 +75,7 @@
                             <textarea name="base64" id="base64" cols="30" rows="10" placeholder="@lang('main.placeholder.base64')">{{ $base64 }}</textarea>
                         </div>
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <button type="submit" class="button small-button place-right">@lang('main.button.decode')</button>
+                        <div class="button-control"><button type="submit" class="button small-button place-right">@lang('main.button.decode')</button></div>
                     </form>
                 </div>
             </div>
@@ -95,7 +95,7 @@
                             <textarea name="binary" id="binary" cols="30" rows="10" placeholder="@lang('main.placeholder.binary')">{{ $binary }}</textarea>
                         </div>
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <button type="submit" class="button small-button place-right">@lang('main.button.decode')</button>
+                        <div class="button-control"><button type="submit" class="button small-button place-right">@lang('main.button.decode')</button></div>
                     </form>
                 </div>
             </div>
@@ -113,7 +113,7 @@
                             <textarea name="hex" id="hex" cols="30" rows="10" placeholder="@lang('main.placeholder.hex')">{{ $hex }}</textarea>
                         </div>
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <button type="submit" class="button small-button place-right">@lang('main.button.decode')</button>
+                        <div class="button-control"><button type="submit" class="button small-button place-right">@lang('main.button.decode')</button></div>
                     </form>
                 </div>
             </div>
@@ -133,7 +133,7 @@
                             <textarea name="char" id="char" cols="30" rows="10" placeholder="@lang('main.placeholder.char')">{{ $char }}</textarea>
                         </div>
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <button type="submit" class="button small-button place-right">@lang('main.button.decode')</button>
+                        <div class="button-control"><button type="submit" class="button small-button place-right">@lang('main.button.decode')</button></div>
                     </form>
                 </div>
             </div>
@@ -151,7 +151,7 @@
                             <textarea name="url" id="url" cols="30" rows="10" placeholder="@lang('main.placeholder.url')">{{ $url }}</textarea>
                         </div>
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <button type="submit" class="button small-button place-right">@lang('main.button.decode')</button>
+                        <div class="button-control"><button type="submit" class="button small-button place-right">@lang('main.button.decode')</button></div>
                     </form>
                 </div>
             </div>
@@ -171,7 +171,7 @@
                             <textarea name="html" id="html" cols="30" rows="10" placeholder="@lang('main.placeholder.html')">{!! $html !!}</textarea>
                         </div>
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <button type="submit" class="button small-button place-right">@lang('main.button.decode')</button>
+                        <div class="button-control"><button type="submit" class="button small-button place-right">@lang('main.button.decode')</button></div>
                     </form>
                 </div>
             </div>
@@ -189,7 +189,7 @@
                             <textarea name="url_html" id="url_html" cols="30" rows="10" placeholder="@lang('main.placeholder.url_html')">{{ $url_html }}</textarea>
                         </div>
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <button type="submit" class="button small-button place-right">@lang('main.button.decode')</button>
+                        <div class="button-control"><button type="submit" class="button small-button place-right">@lang('main.button.decode')</button></div>
                     </form>
                 </div>
             </div>
@@ -209,7 +209,7 @@
                             <textarea name="morse" id="morse" cols="30" rows="10" placeholder="@lang('main.placeholder.morse')">{{ $morse }}</textarea>
                         </div>
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <button type="submit" class="button small-button place-right">@lang('main.button.decode')</button>
+                        <div class="button-control"><button type="submit" class="button small-button place-right">@lang('main.button.decode')</button></div>
                     </form>
                 </div>
             </div>

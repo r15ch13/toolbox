@@ -21,7 +21,7 @@ a.app-bar-element.active {
 }
 
 .decoder .panel .content {
-    height: 15.3em;
+    min-height: 15.3em;
 }
 
 .decoder textarea,
@@ -33,6 +33,17 @@ a.app-bar-element.active {
 
 .decoder .textarea {
     width: 100%;
+}
+
+.decoder .button-control {
+    height: 1.7rem;
+}
+
+.cells2 > :first-child .content {
+    z-index: 10;
+}
+.cells2 > :last-child .content {
+    z-index: 9;
 }
 
 .checksums .CodeMirror {
