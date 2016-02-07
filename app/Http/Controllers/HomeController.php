@@ -65,7 +65,12 @@ class HomeController extends Controller
 			$text = urldecode(html_entity_decode(Input::get('url_html')));
 
 		if(Input::has('morse'))
-			$text = (new MorseCode())->fromMorse(Input::get('morse'));
+			$text = (new MorseCode())->fromMorse(strtr(Input::get('morse'), [
+                '·' => '.', // &middot;
+                '⋅' => '.', // &sdot;
+                '−' => '-', // &minus;
+                '–' => '-', // &ndash;
+            ]));
 
 		// create checksum output
 		$checksum_output = '';
