@@ -69,6 +69,10 @@ class HomeController extends Controller
 
 		// create checksum output
 		$checksum_output = '';
+        $checksum_output .= sprintf('%-12s%s', 'CRYPT:', crypt($text, '')).PHP_EOL;
+        $checksum_output .= sprintf('%-12s%s', 'BCRYPT:', password_hash($text, PASSWORD_BCRYPT)).PHP_EOL;
+        $checksum_output .= PHP_EOL;
+
 		$checksums = checksums($text);
 
 		foreach($checksums as $key => $value)

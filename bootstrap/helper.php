@@ -220,12 +220,9 @@ if ( ! function_exists('checksums'))
      * @param  string  $value
      * @return array
      */
-    function checksums($value, $salt = '')
+    function checksums($value)
     {
         $result = [];
-
-        $result['crypt'] = crypt($value, $salt);
-        $result['bcrypt'] = password_hash($value, PASSWORD_BCRYPT);
 
         foreach (hash_algos() as $algo)
         {
