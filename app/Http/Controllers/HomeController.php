@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use GuzzleHttp\Client;
 use Rfifteen\Toolbox\ShortUrl;
 use Rfifteen\Toolbox\Shortener;
+use Morse\Text as MorseCode;
 
 class HomeController extends Controller
 {
@@ -27,6 +28,7 @@ class HomeController extends Controller
 			'url' => '',
 			'html' => '',
 			'url_html' => '',
+			'morse' => '',
 			'xml' => '',
 			'json' => '',
 			'checksum' => '',
@@ -62,6 +64,9 @@ class HomeController extends Controller
 		if(Input::has('url_html'))
 			$text = urldecode(html_entity_decode(Input::get('url_html')));
 
+		if(Input::has('morse'))
+			$text = (new MorseCode())->fromMorse(Input::get('morse'));
+
 		// create checksum output
 		$checksum_output = '';
 		$checksums = checksums($text);
@@ -82,6 +87,7 @@ class HomeController extends Controller
 			'url_html' => htmlentities(urlencode($text)),
 			'xml' => xml_beautifier($text),
 			'json' => json_beautifier($text),
+			'morse' => (new MorseCode())->toMorse($text),
 			'checksum' => trim($checksum_output),
 			'short_url' => '',
         ];

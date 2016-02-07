@@ -18,6 +18,7 @@ return [
         'url' => 'URL Encoding',
         'html' => 'HTML Entities',
         'url_html' => 'URL Encoding & HTML Entities',
+        'morse' => 'Morse Code',
         'xml' => 'XML',
         'json' => 'JSON',
         'checksum' => 'MESSAGE DIGEST / CHECK SUM',
@@ -41,6 +42,7 @@ return [
         'url' => 'Insert URL encoded text here',
         'html' => 'Insert HTML with escaped entities here',
         'url_html' => 'Insert URL encoded text with HTML entities here',
+        'morse' => '.. -. ... . .-. -  -- --- .-. ... .  -.-. --- -.. .  .... . .-. .',
     ],
 
     'success' => [

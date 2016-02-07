@@ -196,6 +196,26 @@
         </div>
     </div>
 
+    <div class="row cells2">
+        <div class="cell decoder">
+            <div class="panel">
+                <div class="heading bg-violet fg-grayLighter">
+                    <span class="icon mif-unlink fg-grayLighter"></span>
+                    <span class="title">@lang('main.textarea.morse')</span>
+                </div>
+                <div class="content padding10">
+                    <form method="post" action="{{ route('translate') }}" accept-charset="UTF-8" class="">
+                        <div class="input-control textarea">
+                            <textarea name="morse" id="morse" cols="30" rows="10" placeholder="@lang('main.placeholder.morse')">{{ $morse }}</textarea>
+                        </div>
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <button type="submit" class="button small-button place-right">@lang('main.button.decode')</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     @if($xml)
         <div class="row">
             <div class="cell code">
