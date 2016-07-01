@@ -81,7 +81,7 @@ return [
         'about' => [
             'title' => 'About',
             'content' => '<p>This little project was inspired by Paul Schou\'s <a href="https://paulschou.com/tools/xlate/">TRANSLATOR, BINARY xlate</a>.</p>
-                        <p>I used xlate used often, but it lacked some features. So I created this project and added a few features, such as XML and JSON beautifier and a URL shortener.</p>',
+                        <p>I used xlate often, but it lacked some features. So I created this project and added a few features, such as XML and JSON beautifier and a URL shortener.</p>',
             'proceed' => 'Proceed to this page',
             'cancel' => 'Cancel',
         ],
