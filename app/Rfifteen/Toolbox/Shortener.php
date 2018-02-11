@@ -21,12 +21,12 @@ class Shortener
     private function validator()
     {
         $validator = Validator::make(
-			Input::all(),
-			[
+            Input::all(),
+            [
                 'long_url' => 'required|url',
                 'g-recaptcha-response' => 'recaptcha',
             ]
-		);
+        );
 
         return $validator;
     }
@@ -57,8 +57,8 @@ class Shortener
         ]);
     }
 
-	public function shorten()
-	{
+    public function shorten()
+    {
         $validator = $this->validator();
         if($validator->fails())
         {
@@ -84,6 +84,6 @@ class Shortener
         }
 
         return $this->errorResponse('Unknown error.');
-	}
+    }
 
 }

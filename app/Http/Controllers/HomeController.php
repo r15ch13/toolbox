@@ -17,97 +17,97 @@ use Morse\Text as MorseCode;
 class HomeController extends Controller
 {
 
-	public function home()
-	{
-		$data = [
-			'text' => '',
-			'base64' => '',
-			'binary' => '',
-			'hex' => '',
-			'char' => '',
-			'url' => '',
-			'html' => '',
-			'url_html' => '',
-			'morse' => '',
-			'xml' => '',
-			'json' => '',
-			'checksum' => '',
-			'short_url' => Session::get('short_url', ''),
+    public function home()
+    {
+        $data = [
+            'text' => '',
+            'base64' => '',
+            'binary' => '',
+            'hex' => '',
+            'char' => '',
+            'url' => '',
+            'html' => '',
+            'url_html' => '',
+            'morse' => '',
+            'xml' => '',
+            'json' => '',
+            'checksum' => '',
+            'short_url' => Session::get('short_url', ''),
         ];
 
-		return view('page.home', $data);
-	}
+        return view('page.home', $data);
+    }
 
-	public function translate()
-	{
-		$text = Input::get('text', '');
+    public function translate()
+    {
+        $text = Input::get('text', '');
 
-		// decode stuff
-		if(Input::has('binary'))
-			$text = binary_decode(Input::get('binary'));
+        // decode stuff
+        if(Input::has('binary'))
+            $text = binary_decode(Input::get('binary'));
 
-		if(Input::has('hex'))
-			$text = hex_decode(Input::get('hex'));
+        if(Input::has('hex'))
+            $text = hex_decode(Input::get('hex'));
 
-		if(Input::has('base64'))
-			$text = base64_decode(chunk_split(Input::get('base64')));
+        if(Input::has('base64'))
+            $text = base64_decode(chunk_split(Input::get('base64')));
 
-		if(Input::has('char'))
-			$text = char_decode(Input::get('char'));
+        if(Input::has('char'))
+            $text = char_decode(Input::get('char'));
 
-		if(Input::has('url'))
-			$text = urldecode(Input::get('url'));
+        if(Input::has('url'))
+            $text = urldecode(Input::get('url'));
 
-		if(Input::has('html'))
-			$text = html_entity_decode(Input::get('html'));
+        if(Input::has('html'))
+            $text = html_entity_decode(Input::get('html'));
 
-		if(Input::has('url_html'))
-			$text = urldecode(html_entity_decode(Input::get('url_html')));
+        if(Input::has('url_html'))
+            $text = urldecode(html_entity_decode(Input::get('url_html')));
 
-		if(Input::has('morse'))
-			$text = (new MorseCode())->fromMorse(strtr(Input::get('morse'), [
+        if(Input::has('morse'))
+            $text = (new MorseCode())->fromMorse(strtr(Input::get('morse'), [
                 '·' => '.', // &middot;
                 '⋅' => '.', // &sdot;
                 '−' => '-', // &minus;
                 '–' => '-', // &ndash;
             ]));
 
-		// create checksum output
-		$checksum_output = '';
+        // create checksum output
+        $checksum_output = '';
         $checksum_output .= sprintf('%-12s%s', 'CRYPT:', crypt($text, '')).PHP_EOL;
         $checksum_output .= sprintf('%-12s%s', 'BCRYPT:', password_hash($text, PASSWORD_BCRYPT)).PHP_EOL;
         $checksum_output .= PHP_EOL;
 
-		$checksums = checksums($text);
+        $checksums = checksums($text);
 
-		foreach($checksums as $key => $value)
-		{
-			$checksum_output .= sprintf('%-12s%s', strtoupper($key.':'), $value).PHP_EOL;
-		}
+        foreach($checksums as $key => $value)
+        {
+            $checksum_output .= sprintf('%-12s%s', strtoupper($key.':'), $value).PHP_EOL;
+        }
 
-		$data = [
-			'text' => $text,
-			'binary' => binary_encode($text),
-			'hex' => hex_encode($text),
-			'base64' => base64_encode($text),
-			'char' => char_encode($text),
-			'url' => urlencode($text),
-			'html' => str_replace('&', '&amp;', htmlentities($text)),
-			'url_html' => htmlentities(urlencode($text)),
-			'xml' => xml_beautifier($text),
-			'json' => json_beautifier($text),
-			'morse' => (new MorseCode())->toMorse($text),
-			'checksum' => trim($checksum_output),
-			'short_url' => '',
+        $data = [
+            'text' => $text,
+            'binary' => binary_encode($text),
+            'hex' => hex_encode($text),
+            'base64' => base64_encode($text),
+            'char' => char_encode($text),
+            'url' => urlencode($text),
+            'html' => str_replace('&', '&amp;', htmlentities($text)),
+            'url_html' => htmlentities(urlencode($text)),
+            'xml' => xml_beautifier($text),
+            'json' => json_beautifier($text),
+            'morse' => (new MorseCode())->toMorse($text),
+            'checksum' => trim($checksum_output),
+            'short_url' => '',
         ];
 
-		return view('page.home', $data);
-	}
+        return view('page.home', $data);
+    }
 
-	public function about()
-	{
-		return view('page.about');
-	}
+    public function about()
+    {
+        return view('page.about');
+    }
 
     public function checkSafeBrowsing($url)
     {
@@ -130,33 +130,33 @@ class HomeController extends Controller
         ];
     }
 
-	public function shorten()
-	{
+    public function shorten()
+    {
         $shortener = new Shortener();
         return $shortener->shorten();
-	}
+    }
 
-	public function lengthenSecure($short)
-	{
-		if($short_url = ShortUrl::findShort($short))
-		{
-			$short_url->secureClick();
+    public function lengthenSecure($short)
+    {
+        if($short_url = ShortUrl::findShort($short))
+        {
+            $short_url->secureClick();
 
-			return view('page.secure', [
-				'url' => $short_url->url,
-				'short_url' => $short_url->getShortUrl(),
+            return view('page.secure', [
+                'url' => $short_url->url,
+                'short_url' => $short_url->getShortUrl(),
             ]);
-		}
-		return redirect()->route('home');
-	}
+        }
+        return redirect()->route('home');
+    }
 
-	public function lengthen($short)
-	{
-		if($short_url = ShortUrl::findShort($short))
-		{
-			return redirect()->to($short_url->click()->url);
-		}
-		return redirect()->route('home');
-	}
+    public function lengthen($short)
+    {
+        if($short_url = ShortUrl::findShort($short))
+        {
+            return redirect()->to($short_url->click()->url);
+        }
+        return redirect()->route('home');
+    }
 
 }

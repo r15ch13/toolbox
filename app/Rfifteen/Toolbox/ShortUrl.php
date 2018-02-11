@@ -20,10 +20,10 @@ class ShortUrl extends Model
     public static function createFromUrl($url)
     {
         do
-		{
-			$slug = integer_to_short_string(static::raiseLastId());
-		}
-		while(static::find($slug));
+        {
+            $slug = integer_to_short_string(static::raiseLastId());
+        }
+        while(static::find($slug));
 
         return new static([
             'short' => $slug,
