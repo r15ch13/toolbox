@@ -23,14 +23,14 @@ $app = new Laravel\Lumen\Application(
     realpath(__DIR__.'/../')
 );
 
-
-require_once "helper.php";
+require_once __DIR__ . '/helper.php';
 $app->register(\Greggilbert\Recaptcha\RecaptchaServiceProvider::class);
+
 $app->configure('recaptcha');
+$app->configure('session');
 
 $app->withFacades();
 $app->withEloquent();
-class_alias('Illuminate\Support\Facades\URL', 'URL');
 class_alias('Illuminate\Support\Facades\Input', 'Input');
 class_alias('Greggilbert\Recaptcha\Facades\Recaptcha', 'Recaptcha');
 
@@ -84,7 +84,12 @@ $app->singleton(
 */
 
 // $app->register(App\Providers\AppServiceProvider::class);
+// $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
+$app->register(\Illuminate\Session\SessionServiceProvider::class);
+$app->bind(\Illuminate\Session\SessionManager::class, function () use ($app) {
+    return new \Illuminate\Session\SessionManager($app);
+});
 
 /*
 |--------------------------------------------------------------------------

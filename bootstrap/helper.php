@@ -265,3 +265,22 @@ if (!function_exists('config_path')) {
         return app()->basePath() . '/config' . ($path ? '/' . $path : $path);
     }
 }
+
+if (!function_exists('csrf_token')) {
+    /**
+     * Get the CSRF token value.
+     *
+     * @return string
+     *
+     * @throws RuntimeException
+     */
+    function csrf_token()
+    {
+        return '';
+        // $session = app('session');
+        // if (isset($session)) {
+        //     return $session->token();
+        // }
+        // throw new RuntimeException('Application session store not set.');
+    }
+}
