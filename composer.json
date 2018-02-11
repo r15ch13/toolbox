@@ -10,7 +10,8 @@
         "vlucas/phpdotenv": "~1.0",
         "greggilbert/recaptcha": "~2.1",
         "guzzlehttp/guzzle": "~6.1",
-        "rexxars/morse": "~1.0"
+        "rexxars/morse": "~1.0",
+        "doctrine/dbal": "^2.6"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.0",

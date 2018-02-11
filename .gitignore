@@ -3,3 +3,4 @@
 .env
 bower_components/
 node_modules/
+database/database\.sqlite
