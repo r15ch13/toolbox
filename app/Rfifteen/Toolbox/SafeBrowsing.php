@@ -17,6 +17,7 @@ class SafeBrowsing
     private $client;
     private $key;
     private $pver;
+    private $matches = [];
 
     public function __construct($url)
     {
@@ -55,8 +56,10 @@ class SafeBrowsing
         }
 
         $this->responseCode = $response->getStatusCode();
-        $this->matches = json_decode($response->getBody())->matches;
-
+        $body = json_decode($response->getBody());
+        if(isset($body->matches)) {
+            $this->matches = $body->matches;
+        }
         return count($this->matches) === 0;
     }
 
