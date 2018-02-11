@@ -68,8 +68,12 @@ return [
             'message' => ':message',
         ],
         'safebrowsing' => [
-            'title' => 'Google Safe Browsing Error!',
+            'title' => 'Google Safe Browsing Result!',
             'message' => 'Site contains or is: :message',
+        ],
+        'safebrowsing_error' => [
+            'title' => 'Google Safe Browsing Error!',
+            'message' => ':message',
         ],
         'unkown' => [
             'title' => 'Unkown Server Error!',

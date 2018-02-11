@@ -72,9 +72,13 @@ class Shortener
         }
 
         $safeBrowsing = new SafeBrowsing($this->longUrl);
-        if( ! $safeBrowsing->isSafeSite())
-        {
-            return $this->errorResponse(join(', ', $safeBrowsing->getErrorMessage()), 'safebrowsing');
+        try {
+            if(!$safeBrowsing->isSafeSite())
+            {
+                return $this->errorResponse(join(', ', $safeBrowsing->getMatchesFormatted()), 'safebrowsing');
+            }
+        } catch (\Exception $ex) {
+            return $this->errorResponse($ex->getMessage(), 'safebrowsing_error');
         }
 
         $shortUrl = ShortUrl::createFromUrl($this->longUrl);

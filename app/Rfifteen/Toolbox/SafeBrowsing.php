@@ -5,8 +5,8 @@ namespace Rfifteen\Toolbox;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
-use GuzzleHttp\Client;
-
+use GuzzleHttp\Client as HttpClient;
+use GuzzleHttp\Exception\ClientException;
 class SafeBrowsing
 {
     private $responseCode = 0;
@@ -30,30 +30,48 @@ class SafeBrowsing
 
     public function isSafeSite()
     {
-        $url = 'https://sb-ssl.google.com/safebrowsing/api/lookup?client='.urlencode($this->client).'&key='.$this->key.'&appver='.$this->appver.'&pver='.$this->pver.'&url='.urlencode($this->url);
+        $safeBrowsingUrl = sprintf('https://safebrowsing.googleapis.com/v4/threatMatches:find?key=%s', $this->key);
 
-        $client = new Client();
-
-        $res = $client->request('GET', $url, [
-            'verify' => $this->verify
-        ]);
-
-        $this->responseCode = $res->getStatusCode();
-        $this->responseBody = array_map('\Illuminate\Support\Str::title', explode(',', $res->getBody()));
-
-        return ($this->responseCode == 204);
-    }
-
-    public function getErrorMessage()
-    {
-        $errors = [
-            200 => $this->responseBody,
-            400 => 'Bad Request—The HTTP request was not correctly formed.',
-            401 => 'Not Authorized—The API key is not authorized.',
-            503 => 'Service Unavailable—The server cannot handle the request. Besides the normal server failures, this can also indicate that the client has been “throttled” for sending too many requests.',
+        $safeBrowsingPayload = [
+            'client' => [
+                'clientId' => $this->client,
+                'clientVersion' => $this->appver,
+            ],
+            'threatInfo' => [
+                'threatTypes' => ['MALWARE', 'SOCIAL_ENGINEERING', 'UNWANTED_SOFTWARE', 'POTENTIALLY_HARMFUL_APPLICATION'],
+                'platformTypes' => ['ANY_PLATFORM'],
+                'threatEntryTypes' => ['URL'],
+                'threatEntries' => [['url' => $this->url]]
+            ]
         ];
 
-        return $errors[$this->responseCode];
+        try {
+            $response = (new HttpClient)->post($safeBrowsingUrl, [
+                'json' => $safeBrowsingPayload,
+                'verify' => $this->verify
+            ]);
+        } catch (ClientException $ex) {
+            throw new \Exception(json_decode($ex->getResponse()->getBody())->error->message);
+        }
+
+        $this->responseCode = $response->getStatusCode();
+        $this->matches = json_decode($response->getBody())->matches;
+
+        return count($this->matches) === 0;
+    }
+
+    public function getMatches()
+    {
+        return $this->matches;
+    }
+
+    public function getMatchesFormatted()
+    {
+        $matchesFormatted = [];
+        foreach($this->getMatches() as $match) {
+            $matchesFormatted[] = \Illuminate\Support\Str::title($match->threatType);
+        }
+        return $matchesFormatted;
     }
 
 }
