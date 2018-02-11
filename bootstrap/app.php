@@ -2,8 +2,10 @@
 
 require_once __DIR__.'/../vendor/autoload.php';
 
-if(is_readable(__DIR__.'/../.env') && is_file(__DIR__.'/../.env')) {
-    Dotenv::load(__DIR__.'/../');
+try {
+    (new Dotenv\Dotenv(__DIR__.'/../'))->load();
+} catch (Dotenv\Exception\InvalidPathException $e) {
+    //
 }
 
 /*
@@ -64,16 +66,10 @@ $app->singleton(
 |
 */
 
-$app->middleware([
-    Illuminate\Cookie\Middleware\EncryptCookies::class,
-    Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
-    Illuminate\Session\Middleware\StartSession::class,
-    Illuminate\View\Middleware\ShareErrorsFromSession::class,
-    Laravel\Lumen\Http\Middleware\VerifyCsrfToken::class,
-]);
-
+// $app->middleware([
+// ]);
 // $app->routeMiddleware([
-
+//     'auth' => App\Http\Middleware\Authenticate::class,
 // ]);
 
 /*
@@ -101,8 +97,12 @@ $app->middleware([
 |
 */
 
-$app->group(['namespace' => 'App\Http\Controllers'], function ($app) {
-    require __DIR__.'/../app/Http/routes.php';
+
+
+$app->router->group([
+    'namespace' => 'App\Http\Controllers',
+], function ($router) {
+    require __DIR__.'/../routes/web.php';
 });
 
 return $app;

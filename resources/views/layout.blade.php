@@ -25,8 +25,8 @@
         <div class="app-bar">
             <a class="app-bar-element branding" href="{{ route('home') }}">@lang('main.title')</a>
             <span class="app-bar-divider"></span>
-            <a class="app-bar-element {{ route('home') == Request::url() ? 'active' : '' }}" href="{{ route('home') }}">@lang('main.menu.home')</a>
-            <a class="app-bar-element {{ route('about') == Request::url() ? 'active' : '' }}" href="{{ route('about') }}">@lang('main.menu.about')</a>
+            <a class="app-bar-element {{ route('home') == \Illuminate\Support\Facades\Request::url() ? 'active' : '' }}" href="{{ route('home') }}">@lang('main.menu.home')</a>
+            <a class="app-bar-element {{ route('about') == \Illuminate\Support\Facades\Request::url() ? 'active' : '' }}" href="{{ route('about') }}">@lang('main.menu.about')</a>
         </div>
 
         @yield('content')

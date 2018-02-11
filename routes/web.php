@@ -13,7 +13,7 @@
 /**
  * Home
  */
-$app->get('/', [
+$router->get('/', [
     'as' => 'home',
     'uses' => 'HomeController@home',
 ]);
@@ -21,7 +21,7 @@ $app->get('/', [
 /**
  * Decode/Encode all the strings ヽ(ﾟ◇ﾟ )ﾉ
  */
-$app->post('/', [
+$router->post('/', [
     'as' => 'translate',
     'uses' => 'HomeController@translate',
 ]);
@@ -29,13 +29,13 @@ $app->post('/', [
 /**
  * Page group
  */
-$app->group(['prefix' => 'page', 'namespace' => 'App\Http\Controllers'], function($app)
+$router->group(['prefix' => 'page'], function($router)
 {
 
     /**
      * Redirect to home.
      */
-    $app->get('/', function() {
+    $router->get('/', function() {
         return redirect()->route('home');
     });
 
@@ -43,7 +43,7 @@ $app->group(['prefix' => 'page', 'namespace' => 'App\Http\Controllers'], functio
     /**
      * Redirect to home.
      */
-    $app->get('short', function() {
+    $router->get('short', function() {
         return redirect()->route('home');
     });
 
@@ -51,7 +51,7 @@ $app->group(['prefix' => 'page', 'namespace' => 'App\Http\Controllers'], functio
     /**
      * Show about page.
      */
-    $app->get('about', [
+    $router->get('about', [
         'as' => 'about',
         'uses' => 'HomeController@about',
     ]);
@@ -59,11 +59,11 @@ $app->group(['prefix' => 'page', 'namespace' => 'App\Http\Controllers'], functio
     /**
      * Shorten URL
      */
-    $app->get('shorten', function() {
+    $router->get('shorten', function() {
         return redirect()->route('home');
     });
 
-    $app->post('shorten', [
+    $router->post('shorten', [
         'as' => 'shorten_ajax',
         'uses' => 'HomeController@shorten',
     ]);
@@ -73,7 +73,7 @@ $app->group(['prefix' => 'page', 'namespace' => 'App\Http\Controllers'], functio
 /**
  * Search short URL and show page with long URL if found.
  */
-$app->get('s/{slug}', [
+$router->get('s/{slug}', [
     'as' => 'lengthen_secure',
     'uses' => 'HomeController@lengthenSecure',
 ]);
@@ -81,7 +81,7 @@ $app->get('s/{slug}', [
 /**
  * Search short URL and redirect to the long URL if found.
  */
-$app->get('{slug}', [
+$router->get('{slug}', [
     'as' => 'lengthen',
     'uses' => 'HomeController@lengthen',
 ]);
